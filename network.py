@@ -16,16 +16,29 @@ class MultilayerPerceptron:
         # Output layer has 2 neurons, and 6 inputs
         self.network.append(Dense(2,6))
         print("Network Created...")
-    
-    # Train the model
-    def train(X_train, y_train, learning_rate = 0.1, epochs = 100):
-        # While epochs are remaining
-            # for current trainng sample in X_train
-                # Previous outputs is current training example
-                # For every layer: 
-                    # find the respective output vector, store it will be used in next  layer
-                # For the last output vector find error
-                # Do backward prop - update weights - Need Local Gradient Calculation
+
+    #Local Gradient  
+    def loacal_gradient():
         pass
-        # Forward Propagation
-        # Backward Propagation
+
+    # Train the model
+    def train(self, X_train, y_train, learning_rate = 0.1, epochs = 100):
+        print('In MLP.train() method')
+        print('Input Shape: ', X_train.shape)
+        while epochs >= 1: # While epochs are remaining
+            
+            for current_sample in X_train: # for current trainng sample in X_train
+                previous_layers_outputs = []
+                previous_layers_outputs.append(current_sample) # Previous outputs is current training example
+                
+                for network in self.network:
+                    # Take latest output feed it to next layer as input and store its result as latest output
+                    previous_layers_outputs.append(network.forward_signal(previous_layers_outputs[-1]))
+
+                error_at_output = (y_train - previous_layer_output) ** 2
+
+                for network in self.network:
+                    
+                # Backpropagation Now
+                
+        pass
